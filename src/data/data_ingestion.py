@@ -8,7 +8,11 @@ from sklearn.model_selection import train_test_split
 import yaml
 import logging
 from src.logger import logging
-# from src.connections import s3_connection
+from src.connections import s3_connection
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def load_params(params_path: str) -> dict:
     """Load parametes from a YAML file."""
@@ -73,9 +77,13 @@ def main():
         # text_size = params['data_ingestion']['test_size']
         test_size = 0.2
 
-        df = load_data(data_url='https://raw.githubusercontent.com/vikashishere/Datasets/refs/heads/main/data.csv')
-        # s3 = s3_connection.s3_operations("bucket-name", "accesskey", "secretkey")
-        # df = s3.fetch_file_from_s3("data.csv")
+        # df = load_data(data_url='https://raw.githubusercontent.com/vikashishere/Datasets/refs/heads/main/data.csv')
+        s3 = s3_connection.s3_operations(
+            os.environ.get("AWS_BUCKET_NAME"),
+            os.environ.get("AWS_ACCESS_KEY_ID"),
+            os.environ.get("AWS_SECRET_ACCESS_KEY"),
+            os.environ.get("AWS_REGION_NAME"))
+        df = s3.fetch_file_from_s3("data.csv")
 
         final_df = preprocess_data(df)
         train_data, test_data = train_test_split(final_df, test_size=test_size, random_state=42)

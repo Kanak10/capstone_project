@@ -39,21 +39,15 @@ def load_model_info(file_path: str) -> dict:
 def register_model(model_name: str, model_info: dict):
     """Register the model to the MLFlow Model Registry."""
     try:
-        model_uri = f"runs:/{model_info['run_id']}/{model_info['model_path']}"
-        print(f"model_uri:: {model_uri}")
         # Register the model
-        model_version = mlflow.register_model(model_uri, model_name)
-        print(f"model_version:: {model_version}")
+        model_version = mlflow.register_model(model_info["model_uri"], "my_model")
         # Transition the model to "Staging" stage
         client = mlflow.tracking.MlflowClient()
-        print(f"client:: {client}")
         client.transition_model_version_stage(
             name=model_name,
             version=model_version.version,
             stage="Staging"
         )
-        print(f"model_name:: {model_name}")
-        print(f"model_version.version:: {model_version.version}")
         logging.debug(f'Model {model_name} version {model_version.version} registered and transitioned to Staging.')
     except Exception as e:
         logging.error('Error during model registration: %s', e)
@@ -64,7 +58,7 @@ def main():
     try:
         model_info_path = 'reports/experiment_info.json'
         model_info = load_model_info(model_info_path)
-        print(f"model_info:: {model_info}")
+
         model_name = "my_model"
         register_model(model_name, model_info)
     except Exception as e:

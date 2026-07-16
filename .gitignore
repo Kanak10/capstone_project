@@ -220,3 +220,6 @@ __marimo__/
 credential.md
 /data/
 /models/
+
+dvc.lock
+/reports/

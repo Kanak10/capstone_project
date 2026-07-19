@@ -221,5 +221,4 @@ credential.md
 /data/
 /models/
 
-dvc.lock
 /reports/

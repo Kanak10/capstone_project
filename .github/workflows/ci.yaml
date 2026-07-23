@@ -34,4 +34,4 @@ jobs:
         env:
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
         run: |
-          dvc repro
+          uv run dvc repro

@@ -30,7 +30,3 @@ dependencies = [
 
 [tool.setuptools]
 packages = ["src"]
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["src*"]

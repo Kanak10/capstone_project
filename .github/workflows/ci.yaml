@@ -32,6 +32,10 @@ jobs:
 
       - name: run pipeline
         env:
+          AWS_ACCESS_KEY_ID: ${{ secret.AWS_ACCESS_KEY_ID }}
+          AWS_BUCKET_NAME: ${{ secret.AWS_BUCKET_NAME }}
+          AWS_REGION_NAME: ${{ secret.AWS_REGION_NAME }}
+          AWS_SECRET_ACCESSS_KEY: ${{ secret.AWS_SECRET_ACCESS_KEY }}
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
         run: |
           uv run dvc repro

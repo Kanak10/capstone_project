@@ -97,7 +97,7 @@ def save_metrics(metrics: dict, file_path: str) -> None:
         path = Path(file_path)
 
         # Create reports/ (or any parent directories) if needed
-        path.parent.mkdir(parent=True, exist_ok=True)
+        path.parent.mkdir(parents=True, exist_ok=True)
 
         with open(file_path, 'w') as file:
             json.dump(metrics, file, indent=4)

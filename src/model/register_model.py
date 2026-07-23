@@ -14,12 +14,30 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Below code block is for production use
+# -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = os.environ.get("mlflow_repo_owner")
+repo_name = os.environ.get("mlflow_repo_name")
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# -------------------------------------------------------------------------------------
+
 # Below code block is for local use
 # -------------------------------------------------------------------------------------
-mlflow.set_tracking_uri(os.environ.get("mlflow_tracking_uri"))
-dagshub.init(repo_owner=os.environ.get("mlflow_repo_owner"),
-             repo_name=os.environ.get("mlflow_repo_name"),
-             mlflow=True)
+# mlflow.set_tracking_uri(os.environ.get("mlflow_tracking_uri"))
+# dagshub.init(repo_owner=os.environ.get("mlflow_repo_owner"),
+#              repo_name=os.environ.get("mlflow_repo_name"),
+#              mlflow=True)
 # -------------------------------------------------------------------------------------
 
 def load_model_info(file_path: str) -> dict:

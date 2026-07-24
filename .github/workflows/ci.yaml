@@ -36,8 +36,8 @@ jobs:
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
           AWS_REGION_NAME: ${{ secrets.AWS_REGION_NAME }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          mlflow_repo_owner: ${{ secrets.mlflow_repo_owner }}
-          mlflow_repo_name: ${{ secrets.mlflow_repo_name }}
+          mlflow_repo_owner: ${{ secrets.MLFLOW_REPO_OWNER }}
+          mlflow_repo_name: ${{ secrets.MLFLOW_REPO_NAME }}
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
         run: |
           uv run dvc repro

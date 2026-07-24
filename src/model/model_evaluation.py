@@ -26,9 +26,9 @@ os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
 dagshub_url = "https://dagshub.com"
-repo_owner = os.environ.get("MLFLOW_REPO_OWNER")
+repo_owner = os.getenv("MLFLOW_REPO_OWNER")
 logging.info(f"repo_owner: {repo_owner}")
-repo_name = os.environ.get("MLFLOW_REPO_NAME")
+repo_name = os.getenv("MLFLOW_REPO_NAME")
 logging.info(f"repo_name: {repo_name}")
 
 # Set up MLflow tracking URI

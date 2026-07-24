@@ -51,7 +51,7 @@ jobs:
           MLFLOW_REPO_NAME: ${{ secrets.MLFLOW_REPO_NAME }}
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
         run: |
-          python -m unittest tests/test_model.py
+          uv run python -m unittest tests/test_model.py
 
       - name: Promote model to production
         if: success()
@@ -59,7 +59,7 @@ jobs:
           MLFLOW_REPO_OWNER: ${{ secrets.MLFLOW_REPO_OWNER }}
           MLFLOW_REPO_NAME: ${{ secrets.MLFLOW_REPO_NAME }}
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
-        run: python scripts/promote_model.py
+        run: uv run python scripts/promote_model.py
 
       - name: Run flask app tests
         if: success()
@@ -67,4 +67,4 @@ jobs:
           MLFLOW_REPO_OWNER: ${{ secrets.MLFLOW_REPO_OWNER }}
           MLFLOW_REPO_NAME: ${{ secrets.MLFLOW_REPO_NAME }}
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
-        run: python -m unittest tests/test_flask_app.py
+        run: uv run python -m unittest tests/test_flask_app.py

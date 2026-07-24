@@ -11,7 +11,6 @@ import string
 import re
 import dagshub
 import numpy as np
-from src.logger import logging
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -84,9 +83,7 @@ os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
 dagshub_url = "https://dagshub.com"
 repo_owner = os.getenv("MLFLOW_REPO_OWNER")
-logging.info(f"repo_owner: {repo_owner}")
 repo_name = os.getenv("MLFLOW_REPO_NAME")
-logging.info(f"repo_name: {repo_name}")
 
 # Set up MLflow tracking URI
 mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')

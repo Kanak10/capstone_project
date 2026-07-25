@@ -35,6 +35,10 @@ jobs:
 
       - name: run pipeline
         env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+          AWS_REGION_NAME: ${{ secrets.AWS_REGION_NAME }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           MLFLOW_REPO_OWNER: ${{ secrets.MLFLOW_REPO_OWNER }}
           MLFLOW_REPO_NAME: ${{ secrets.MLFLOW_REPO_NAME }}
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}

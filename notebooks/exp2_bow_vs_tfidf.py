@@ -32,14 +32,14 @@ warnings.filterwarnings("ignore")
 CONFIG = {
     "data_path": "notebooks/data.csv",
     "test_size": 0.2,
-    "mlflow_tracking_uri": os.environ.get("mlflow_tracking_uri"),
-    "dagshub_repo_owner": os.environ.get("mlflow_repo_owner"),
-    "dagshub_repo_name": os.environ.get("mlflow_repo_name"),
+    "MLFLOW_TRACKING_URI": os.environ.get("MLFLOW_TRACKING_URI"),
+    "dagshub_repo_owner": os.environ.get("MLFLOW_REPO_OWNER"),
+    "dagshub_repo_name": os.environ.get("MLFLOW_REPO_NAME"),
     "experiment_name": "BOW vs TFIDF"
 }
 
 # ========================== SETUP MLflow & DAGSHUB ==========================
-mlflow.set_tracking_uri(CONFIG["mlflow_tracking_uri"])
+mlflow.set_tracking_uri(CONFIG["MLFLOW_TRACKING_URI"])
 dagshub.init(repo_owner=CONFIG["dagshub_repo_owner"], repo_name=CONFIG["dagshub_repo_name"], mlflow=True)
 mlflow.set_experiment(CONFIG["experiment_name"])
 

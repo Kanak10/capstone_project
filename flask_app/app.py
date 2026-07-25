@@ -91,9 +91,9 @@ mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 
 # Below code block is for local use
 # -------------------------------------------------------------------------------------
-# mlflow.set_tracking_uri(os.environ.get("mlflow_tracking_uri"))
-# dagshub.init(repo_owner=os.environ.get("mlflow_repo_owner"),
-#              repo_name=os.environ.get("mlflow_repo_name"),
+# mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI"))
+# dagshub.init(repo_owner=os.environ.get("MLFLOW_REPO_OWNER"),
+#              repo_name=os.environ.get("MLFLOW_REPO_NAME"),
 #              mlflow=True)
 # -------------------------------------------------------------------------------------
 

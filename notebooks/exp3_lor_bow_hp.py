@@ -22,8 +22,8 @@ warnings.simplefilter("ignore", UserWarning)
 warnings.filterwarnings("ignore")
 
 # Set MLFlow Tracking URI & DAGsHUB integration
-mlflow.set_tracking_uri(os.environ.get("mlflow_tracking_uri"))
-dagshub.init(repo_owner=os.environ.get("mlflow_repo_owner"), repo_name=os.environ.get("mlflow_repo_name"), mlflow=True)
+mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI"))
+dagshub.init(repo_owner=os.environ.get("MLFLOW_REPO_OWNER"), repo_name=os.environ.get("MLFLOW_REPO_NAME"), mlflow=True)
 mlflow.set_experiment("LoR Hyperparameter Tuning")
 
 

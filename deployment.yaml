@@ -46,4 +46,4 @@ spec:
     - name: http
       protocol: TCP
       port: 5000
-      targetport: 5000
+      targetPort: 5000

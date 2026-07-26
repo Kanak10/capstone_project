@@ -107,22 +107,22 @@ If the path points to your Anaconda environment (e.g., C:\Users\Personal\anacond
 ----------------------------------------------------------------------------------
 
 39. Create an EKS cluster:
-    eksctl create cluster --name flask-app-cluster --region us-east-1 --nodegroup-name flask-app-nodes --node-type t3.small --nodes 1 --nodes-min 1 --nodes-max 1 --managed
+    eksctl create cluster --name flask-app-cluster --region ap-south-1 --nodegroup-name flask-app-nodes --node-type t3.small --nodes 1 --nodes-min 1 --nodes-max 1 --managed
 
 40. Update kubectl Config(Once the cluster is created, eksctl will automatically update your kubectl config file. However, you can verify and set it manually using:)
-aws eks --region us-east-1 update-kubeconfig --name flask-app-cluster (This ensures your kubectl is pointing to the correct cluster.)
+aws eks --region ap-south-1 update-kubeconfig --name flask-app-cluster (This ensures your kubectl is pointing to the correct cluster.)
 
 41. Check EKS Cluster Configuration Ensure you can access your EKS cluster by running
     aws eks list-clusters
 
 42. Delete cluster(optional):
-    eksctl delete cluster --name flask-app-cluster --region us-east-1
+    eksctl delete cluster --name flask-app-cluster --region ap-south-1
 
     Also, verify cluster deletion:
-    eksctl get cluster --region us-east-1
+    eksctl get cluster --region ap-south-1
 
 43. Verify the cluster status:
-    aws eks --region us-east-1 describe-cluster --name flask-app-cluster --query "cluster.status"
+    aws eks --region ap-south-1 describe-cluster --name flask-app-cluster --query "cluster.status"
 
 
 44. Check cluster connectivity:
@@ -144,7 +144,7 @@ kubectl get svc
 kubectl get svc flask-app-service
 
 49. Try externa-ip:5000 directly on url or on terminal : curl http://external-ip:5000
-curl http://a6bf6255d5f61470c9782b8955c98271-1409247973.us-east-1.elb.amazonaws.com:5000
+curl http://a6bf6255d5f61470c9782b8955c98271-1409247973.ap-south-1.elb.amazonaws.com:5000
 
 
 >>>>>>>>>> Prometheus Server Setup <<<<<<<<<<
@@ -175,7 +175,7 @@ global:
 scrape_configs:
   - job_name: "flask-app"
     static_configs:
-      - targets: ["a6bf6255d5f61470c9782b8955c98271-1409247973.us-east-1.elb.amazonaws.com:5000"]  # Replace with your app's External IP
+      - targets: ["a6bf6255d5f61470c9782b8955c98271-1409247973.ap-south-1.elb.amazonaws.com:5000"]  # Replace with your app's External IP
 
 >> Save the File: ctrl+o -> enter -> ctrl+x
 >> Verify the Changes: cat /etc/prometheus/prometheus.yml
@@ -223,8 +223,8 @@ AWS Resource Cleanup:
 * Delete deployment - kubectl delete deployment flask-app
 * Delete service - kubectl delete service flask-app-service
 * Delete env var - kubectl delete secret capstone-secret
-* Delete EKS Cluster - eksctl delete cluster --name flask-app-cluster --region us-east-1
-* Verify Cluster Deletion - eksctl get cluster --region us-east-1
+* Delete EKS Cluster - eksctl delete cluster --name flask-app-cluster --region ap-south-1
+* Verify Cluster Deletion - eksctl get cluster --region ap-south-1
 * Delete artifacts of ECR and S3 (optional - delete ECR and S3)
 * Validate if Cloud Formation stacks are deleted.
 * Confirm service termination on AWS support chat.
